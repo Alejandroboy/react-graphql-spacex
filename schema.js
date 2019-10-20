@@ -16,10 +16,14 @@ const LaunchType = new GraphQLObjectType({
   fields: () => ({
     flight_number: { type: GraphQLInt },
     mission_name: { type: GraphQLString },
+    // mission_id: { type: GraphQLString },
     launch_year: { type: GraphQLString },
     launch_date_local: { type: GraphQLString },
+    details: { type: GraphQLString },
     launch_success: { type: GraphQLBoolean },
     rocket: { type: RocketType },
+    launch_failure_details: { type: LaunchFailureType },
+    links: { type: LinksType }
   }),
 });
 
@@ -33,6 +37,31 @@ const RocketType = new GraphQLObjectType({
     rocket_type: { type: GraphQLString },
   }),
 });
+
+// Launch Failure Type
+
+const LaunchFailureType = new GraphQLObjectType({
+  name: 'LaunchFailure',
+  fields: () => ({
+    time: { type: GraphQLInt },
+    reason: { type: GraphQLString }
+  })
+})
+
+// Links Type
+
+const LinksType = new GraphQLObjectType({
+  name: 'Links',
+  fields: () => ({
+    mission_patch: { type: GraphQLString },
+    mission_patch_small: { type: GraphQLString },
+    presskit: { type: GraphQLString },
+    article_link: { type: GraphQLString },
+    wikipedia: { type: GraphQLString },
+    video_link: { type: GraphQLString },
+    youtube_id: { type: GraphQLString }
+  })
+})
 
 //Root query
 

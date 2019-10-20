@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import LaunchItem from './LaunchItem';
-import MissionKey from './MissionKey';
+import LaunchItem from '../LaunchItem/LaunchItem';
+import MissionKey from '../MissionKey';
 
 const LAUNCHES_QUERY = gql`
   query LaunchesQuery {
@@ -11,6 +11,15 @@ const LAUNCHES_QUERY = gql`
       mission_name
       launch_date_local
       launch_success
+      links {
+        mission_patch
+        mission_patch_small
+        presskit
+        article_link
+        wikipedia
+        video_link
+        youtube_id
+      }
     }
   }
 `;
@@ -25,6 +34,7 @@ export class Launches extends Component {
           {({ loading, error, data }) => {
             if (loading) return <h4>...Loading...</h4>;
             if (error) return console.log(error);
+            console.log(data)
             return (
               <React.Fragment>
                 {data.launches.map(launch => (

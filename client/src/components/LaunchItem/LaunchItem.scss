@@ -1,0 +1,18 @@
+.launch-item {
+    display: flex;
+    padding: 10px;
+    margin-bottom: 20px;
+
+    &__img {
+        width: 100px;
+        margin-right: 20px;
+    }
+      
+    &__details {
+        margin-left: auto;
+    }
+
+    &__info {
+        display: flex;
+    }
+}
