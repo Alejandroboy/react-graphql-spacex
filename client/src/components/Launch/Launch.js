@@ -4,7 +4,7 @@ import { Query } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 // import { Player } from 'video-react';
-import Video from '../Video'
+import Video from '../Video/Video'
 
 const LAUNCH_QUERY = gql`
   query LaunchQuery($flight_number: Int!) {
@@ -38,6 +38,14 @@ const LAUNCH_QUERY = gql`
 `;
 
 export class Launch extends Component {
+  state = {
+    open: false
+  }
+  openStatus = () => {
+    this.setState(prevState => ({
+      open: !prevState.open
+    }))
+  }
   render() {
     let { flight_number } = this.props.match.params;
     flight_number = parseInt(flight_number);
@@ -98,7 +106,8 @@ export class Launch extends Component {
                 <hr />
                 <Link to="/" className="button" style={{ marginTop: 20 + 'px' }}>Back</Link>
                 {/* <Player><source src={video_link}></source></Player> */}
-                <Video youtubeId={youtube_id}></Video>
+                <button onClick={this.openStatus}>Ореn Video</button>
+                <Video open={this.state.open} youtubeId={youtube_id}></Video>
               </div>
             );
           }}

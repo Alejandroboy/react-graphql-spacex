@@ -4,7 +4,7 @@ import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 
 export default function LaunchItem({
-  launch: { flight_number, mission_name, launch_date_local, launch_success, links: { mission_patch_small } },
+  launch: { flight_number, mission_name, launch_date_local, launch_success, links: { mission_patch_small }, launch_failure_details, },
 }) {
   return (
     <div className="launch-item">
@@ -25,6 +25,7 @@ export default function LaunchItem({
           <p className="launch-item__date">
             Date: <Moment format="DD.MM.YYYY HH:mm">{launch_date_local}</Moment>
           </p>
+          {!launch_success && <button>Failure reason</button>}
         </div>
       </div>
       <div className="launch-item__details">
