@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
-import { Player } from 'video-react';
+// import { Player } from 'video-react';
 import Video from '../Video'
 
 const LAUNCH_QUERY = gql`
@@ -64,7 +64,7 @@ export class Launch extends Component {
               },
             } = data.launch;
 
-            console.log(data)
+            console.log(data.launch.links.youtube_id)
 
             return (
               <div>
@@ -98,7 +98,7 @@ export class Launch extends Component {
                 <hr />
                 <Link to="/" className="button" style={{ marginTop: 20 + 'px' }}>Back</Link>
                 {/* <Player><source src={video_link}></source></Player> */}
-                <Video youtube_id={youtube_id}></Video>
+                <Video youtubeId={youtube_id}></Video>
               </div>
             );
           }}
